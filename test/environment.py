@@ -5,6 +5,10 @@
 import chess
 import chess.svg
 from PIL import Image, ImageTk
+from svglib.svglib import svg2rlg
+from reportlab.graphics import renderPDF
+
+
 import tkinter as tk
 
 class Environment(tk.Frame):
@@ -22,37 +26,24 @@ class Environment(tk.Frame):
         self.chessboard = chess.Board()
         self.chessboardSvg = chess.svg.board(self.chessboard).encode("UTF-8")
         
-        self.widgetSvg.load(self.chessboardSvg)
+        # # Convert SVG to ReportLab graphics
+        # drawing = svg2rlg(self.chessboardSvg)
+        
+        # # Render ReportLab graphics to a PNG string
+        # board_string = drawing.asString('PNG')
+
+        # temp image
+        self.image = Image.open("images/chess-engine-logo.png")
+        # create imagetk obj to display
+        self.img = ImageTk.PhotoImage(self.image)
+        # create label to display image
+
+        # Display image using Tkinter
+        # img = ImageTk.PhotoImage()
+        self.board = tk.Label(self, image=self.img)
+        self.board.pack()
 
 if __name__ == "__main__":
     root = tk.Tk()
     Environment(root).pack(side="top", fill="both", expand=True)
     root.mainloop()
-
-# def startGame(window):
-#     lbl = tk.Label(window, "shit")
-#     lbl.pack()
-
-# def loadGUI():
-#     # Window
-#     root = tk.Tk()
-    
-#     # Start buttton
-#     btn = tk.Button(root, text="Start Game", command=lambda: startGame(root))
-#     btn.pack()
-
-#     # Open
-#     root.mainloop()
-
-# def main():
-#     board = chess.Board()
-
-#     # Load engine
-#     # [TO-DO]
-
-#     # Start game
-#     loadGUI()
-
-    
-# if __name__ == '__main__':
-#     main()
