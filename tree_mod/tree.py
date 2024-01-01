@@ -3,7 +3,7 @@
 # Tree data structure
 
 class TreeNode:
-    def __init__(self, data):
+    def __init__(self, data): 
         self.data = data
         self.children = []
         self.parent = None
@@ -20,12 +20,12 @@ class TreeNode:
             p = p.parent
         return level
     
-    def __str__(self):
+    def to_string(self):
         spaces = ' ' * self.get_level() * 3
         prefix = spaces + "|--" if self.parent else ""
-        ret = f"{prefix}{self.data}"
-        if len(self.children) > 0:
+
+        print(f"{prefix}{self.data}")
+        if self.children:
             for child in self.children:
-                self.__str__(child)
-        return ret
+                child.to_string()
 

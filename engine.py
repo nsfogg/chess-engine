@@ -2,14 +2,14 @@
 # 12/17/2023
 # Chess engine logic
 
-from tree import *
+from tree_mod import *
 import chess
 import chess.engine
 
 class Engine():
     def __init__(self, position):
         self.search_bound = 3
-        node = TreeNode(position)
+        node = tree.TreeNode(position)
         self.turn = True
         self.best_move = []
         self.eng = chess.engine.SimpleEngine.popen_uci("D:\Projects\Stockfish\stockfish-windows-x86-64-modern")
